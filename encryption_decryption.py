@@ -109,8 +109,6 @@ def go_through_rotors_inwards(index_c_plug_in, rotors, offsets):
     return char_rotors_in
 
 
-
-
 """
 Method: go_fast_rotor_in()
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -206,7 +204,6 @@ FUNCTIONALITY:
 - Runs the character from the reflector through the rotors again but in inverse order,
 encoding it along the way up to the plugboard.
 """
-
 
 
 def go_through_rotors_outwards(index_c_reflector, rotors, offsets):

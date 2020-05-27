@@ -50,7 +50,7 @@ def place_rotors(rotor_order):
 Method: set_rotors()
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 INPUT: LIST initial_pos, LIST rotors
-OUTPUT: LIST_INTEGER offset_list
+OUTPUT: LIST_INTEGER rotor_initial_position
 FUNCTIONALITY:
 - Turns the rotors into the desired initial positions.
 """
@@ -64,16 +64,32 @@ def set_rotors(initial_pos):
     return rotor_initial_position
 
 
+"""
+Method: offset_calculator()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: INTEGER f_pos_index, INTEGER m_pos_index, INTEGER s_pos_index
+OUTPUT: LIST_4*INTEGER
+FUNCTIONALITY:
+- Calculates the difference between the rotor contacts. 
+"""
+
+
 def offset_calculator(f_pos_index, m_pos_index, s_pos_index):
     plug_f_offset = f_pos_index
-    # print("plug_f_offset:", plug_f_offset)
     f_m_offset = (m_pos_index - f_pos_index) % ALPHABET_LENGTH
-    # print("f_m_offset:", f_m_offset)
     m_s_offset = (s_pos_index - m_pos_index) % ALPHABET_LENGTH
-    # print("m_s_offset:", m_s_offset)
     s_ref_offset = s_pos_index
-    # print("s_ref_offset:", s_ref_offset)
     return [plug_f_offset, f_m_offset, m_s_offset, s_ref_offset]
+
+
+"""
+Method: get_double_step_position()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST key
+OUTPUT: LIST_2*INTEGER
+FUNCTIONALITY:
+- Gets the position in which the medium and the slow rotor have to turn according to which rotor was selected to be placed into the machine.
+"""
 
 
 def get_double_step_position(key):
@@ -85,6 +101,16 @@ def get_double_step_position(key):
     # Find the number in the DOUBLE STEP NOTCH table
     ds_setting = [DOUBLE_STEP_NOTCH[f_rotor][1] + 1, DOUBLE_STEP_NOTCH[m_rotor][1] + 1]
     return ds_setting
+
+
+"""
+Method: set_connections_amount()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: NONE
+OUTPUT: INTEGER amount
+FUNCTIONALITY:
+- Prompts the user to enter the amount of connections they want to set on the plugboard.
+"""
 
 
 def set_connections_amount():
@@ -100,6 +126,18 @@ def set_connections_amount():
         else:
             break
     return amount
+
+
+"""
+Method: set_plugboard()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: NONE
+OUTPUT: LIST_2*LIST_STRING
+FUNCTIONALITY:
+- Calls set_conn_left() and set_conn_right().
+- Checks for invalid inputs.
+- Gathers results in a list.
+"""
 
 
 def set_plugboard():
@@ -141,11 +179,31 @@ def set_plugboard():
     return [list_conn_left, list_conn_right]
 
 
+"""
+Method: set_conn_left()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST list_conn_left, INTEGER amount 
+OUTPUT: LIST list_conn_left
+FUNCTIONALITY:
+- Fills list_conn_left with user inputs.
+"""
+
+
 def set_conn_left(list_conn_left, amount):
     for i in range(amount):
         conn_left = input("Please, enter a letter on the left end of the connection: ")
         list_conn_left.append(conn_left.upper())
     return list_conn_left
+
+
+"""
+Method: set_conn_right()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST list_conn_right, INTEGER amount 
+OUTPUT: LIST list_conn_right
+FUNCTIONALITY:
+- Fills list_conn_right with user inputs.
+"""
 
 
 def set_conn_right(list_conn_right, amount):
@@ -155,11 +213,37 @@ def set_conn_right(list_conn_right, amount):
     return list_conn_right
 
 
+"""
+Method: is_overlapped()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST connection, INTEGER amount 
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Checks if a letter is connected to more than one other letter.
+- It counts how many times each letter is present in one end of the connection and adds the total.
+- If said total count exceeds the amount of set connections, it means there is overlapping.
+"""
+
+
 def is_overlapped(connection, amount):
     total_count = 0
     for letter in connection:
         total_count = total_count + connection.count(letter)
     return total_count > amount
+
+
+"""
+Method: is_repeated()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST connection_l, LIST connection_r
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Looks for repetition in the connections, that is, if a letter is connected to itself.
+- It forms a list that contains all the connections in form of a two-element list.
+- Takes a connection and subtracts the ascii code of both elements, stores that result in INTEGER comparison
+- Counts how many times INTEGER comparison equals 0.
+- If the total count is not 0, it means that there is at least one letter connected to itself.
+"""
 
 
 def is_repeated(connection_l, connection_r):
@@ -170,9 +254,19 @@ def is_repeated(connection_l, connection_r):
         list_of_pairs.append(pair)
     for letter_pair in list_of_pairs:
         comparison = ord(letter_pair[0]) - ord(letter_pair[1])
-        total = total + comparison
-    return total == 0
+        if comparison == 0:
+            total = total + 1
+    return total != 0
 
+"""
+Method: is_conn_invalid()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST connection, INTEGER amount
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Looks for special characters mistakenly entered when setting up connections by counting how many there are.
+- Returns TRUE if a special char is found. Returns FALSE if no special chars are found.
+"""
 
 def is_conn_invalid(connection, amount):
     valid_count = 0
@@ -182,7 +276,15 @@ def is_conn_invalid(connection, amount):
             valid_count = valid_count + 1
     return valid_count != amount
 
-
+"""
+Method: invalid_amount_of_letters()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: LIST list_connection
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Counts how many entries are more than one char long.
+- Returns TRUE if the count is not zero. Returns FALSE when all entries are exactly one char long.
+"""
 def invalid_amount_of_letters(list_connection):
     total_count = 0
     for i in range(len(list_connection)):
@@ -190,6 +292,14 @@ def invalid_amount_of_letters(list_connection):
             total_count = total_count + 1
     return total_count != 0
 
+"""
+Method: get_rotor_choice()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: NONE
+OUTPUT: LIST_3*INTEGER rotor_order
+FUNCTIONALITY:
+- Prompts the user to choose which of the five rotors they want to use in the machine and in which order to place them.
+"""
 
 def get_rotor_choice():
     while True:
@@ -211,6 +321,15 @@ def get_rotor_choice():
     rotor_order = [fast_rotor, medium_rotor, slow_rotor]
     return rotor_order
 
+"""
+Method: rotor_doesnt_exist()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: INTEGER fast_order, INTEGER medium_rotor, INTEGER slow_order
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Counts how many times the user has entered a number less than 1 and greater than 5.
+- Returns TRUE if there was a mistake. Returns FALSE if no errors were made.
+"""
 
 def rotor_doesnt_exist(fast_order, medium_rotor, slow_order):
     invalid_count = 0
@@ -220,10 +339,28 @@ def rotor_doesnt_exist(fast_order, medium_rotor, slow_order):
             invalid_count = invalid_count + 1
     return invalid_count != 0
 
+"""
+Method: is_rotor_repeated()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: INTEGER fast_order, INTEGER medium_rotor, INTEGER slow_order
+OUTPUT: BOOLEAN
+FUNCTIONALITY:
+- Returns TRUE if there is a repeated rotor. Returns FALSE if no repetition is found.
+"""
 
 def is_rotor_repeated(fast_rotor, medium_rotor, slow_rotor):
     return fast_rotor == medium_rotor or fast_rotor == slow_rotor or medium_rotor == slow_rotor
 
+"""
+Method: get_initial_rotor_position()
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+INPUT: NONE
+OUTPUT: LIST_3*STRING
+FUNCTIONALITY:
+- Prompts the user to enter three letters symbolising the initial setting for all three rotors.
+- Checks if user mistakenly entered a special character.
+- Checks if user mistakenly entered more than three letters.
+"""
 
 def get_initial_rotor_position():
     invalid_data = 0
@@ -246,7 +383,7 @@ def get_initial_rotor_position():
 """
 Method: set_machine()
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-INPUT: STRING prepared_text, LIST key
+INPUT: STRING prepared_text, LIST_LIST key
 OUTPUT: LIST settings
 FUNCTIONALITY:
 - Applies the configuration set by the user into the machine.
