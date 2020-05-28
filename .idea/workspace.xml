@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c44bfab7-89f6-430c-aa3a-c17afffa98ed" name="Default Changelist" comment="">
+    <list default="true" id="c44bfab7-89f6-430c-aa3a-c17afffa98ed" name="Default Changelist" comment="Finished documenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encryption_decryption.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption_decryption.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enigma.py" beforeDir="false" afterPath="$PROJECT_DIR$/enigma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/machine_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_key_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_key_generator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +22,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Punkrocker3435/enigma_simulator.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1c3mlXmqXlFAvHnYmNjDxCGoVez" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,29 +61,66 @@
       <option name="project" value="LOCAL" />
       <updated>1590556526238</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished documenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves">
+      <created>1590556761548</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590556761548</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Finished docummenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished docummenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves" />
+    <MESSAGE value="Finished documenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished documenting machine_settings.py&#10;Fixed a buggy check for repeated connections that allowed letters to be connected to themselves" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1590097534907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590097534907" />
-    <state x="612" y="114" key="CommitChangelistDialog2" timestamp="1590556524538">
+    <state x="612" y="114" width="981" height="830" key="CommitChangelistDialog2" timestamp="1590631046802">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="612" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590556524538" />
+    <state x="612" y="114" width="981" height="830" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1590631046802" />
     <state x="461" y="162" key="SettingsEditor" timestamp="1589939306234">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589939306234" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1590553507240">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1590556966288">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590553507240" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590556966288" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1590556999107">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590556999107" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1590629621511">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590629621511" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590631051648">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1590631051648" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1590630661361">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590630661361" />
   </component>
 </project>

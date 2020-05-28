@@ -96,8 +96,7 @@ def get_double_step_position(key):
     # Take the index of the used rotors
     f_rotor = key[1][0] - 1
     m_rotor = key[1][1] - 1
-    # print(f_rotor)
-    # print(m_rotor)
+
     # Find the number in the DOUBLE STEP NOTCH table
     ds_setting = [DOUBLE_STEP_NOTCH[f_rotor][1] + 1, DOUBLE_STEP_NOTCH[m_rotor][1] + 1]
     return ds_setting
@@ -258,6 +257,7 @@ def is_repeated(connection_l, connection_r):
             total = total + 1
     return total != 0
 
+
 """
 Method: is_conn_invalid()
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -268,6 +268,7 @@ FUNCTIONALITY:
 - Returns TRUE if a special char is found. Returns FALSE if no special chars are found.
 """
 
+
 def is_conn_invalid(connection, amount):
     valid_count = 0
     for i in range(len(connection)):
@@ -275,6 +276,7 @@ def is_conn_invalid(connection, amount):
         if (LOWER_CASE_A_CODE <= ord(letter) <= LOWER_CASE_Z_CODE) or (UPPER_CASE_A_CODE <= ord(letter) <= UPPER_CASE_Z_CODE):
             valid_count = valid_count + 1
     return valid_count != amount
+
 
 """
 Method: invalid_amount_of_letters()
@@ -285,12 +287,15 @@ FUNCTIONALITY:
 - Counts how many entries are more than one char long.
 - Returns TRUE if the count is not zero. Returns FALSE when all entries are exactly one char long.
 """
+
+
 def invalid_amount_of_letters(list_connection):
     total_count = 0
     for i in range(len(list_connection)):
         if len(list_connection[i]) != 1:
             total_count = total_count + 1
     return total_count != 0
+
 
 """
 Method: get_rotor_choice()
@@ -300,6 +305,7 @@ OUTPUT: LIST_3*INTEGER rotor_order
 FUNCTIONALITY:
 - Prompts the user to choose which of the five rotors they want to use in the machine and in which order to place them.
 """
+
 
 def get_rotor_choice():
     while True:
@@ -321,6 +327,7 @@ def get_rotor_choice():
     rotor_order = [fast_rotor, medium_rotor, slow_rotor]
     return rotor_order
 
+
 """
 Method: rotor_doesnt_exist()
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -331,6 +338,7 @@ FUNCTIONALITY:
 - Returns TRUE if there was a mistake. Returns FALSE if no errors were made.
 """
 
+
 def rotor_doesnt_exist(fast_order, medium_rotor, slow_order):
     invalid_count = 0
     orders = [fast_order, medium_rotor, slow_order]
@@ -338,6 +346,7 @@ def rotor_doesnt_exist(fast_order, medium_rotor, slow_order):
         if order < 1 or order > 5:
             invalid_count = invalid_count + 1
     return invalid_count != 0
+
 
 """
 Method: is_rotor_repeated()
@@ -348,8 +357,10 @@ FUNCTIONALITY:
 - Returns TRUE if there is a repeated rotor. Returns FALSE if no repetition is found.
 """
 
+
 def is_rotor_repeated(fast_rotor, medium_rotor, slow_rotor):
     return fast_rotor == medium_rotor or fast_rotor == slow_rotor or medium_rotor == slow_rotor
+
 
 """
 Method: get_initial_rotor_position()
@@ -361,6 +372,7 @@ FUNCTIONALITY:
 - Checks if user mistakenly entered a special character.
 - Checks if user mistakenly entered more than three letters.
 """
+
 
 def get_initial_rotor_position():
     invalid_data = 0
@@ -403,5 +415,4 @@ def set_machine(prepared_text, key):
     m_pos_index = initial_turn_amount[1]
     s_pos_index = initial_turn_amount[2]
     settings = [plugboard_config, rotors, f_pos_index, m_pos_index, s_pos_index]
-    # print(settings)
     return settings

@@ -1,5 +1,4 @@
 import time
-# import pyfiglet
 from encryption_decryption import *
 from machine_settings import *
 from random_key_generator import *
@@ -7,8 +6,6 @@ from file_handling import *
 
 
 def main():
-    # program_name = pyfiglet.figlet_format("Enigma Simulator")
-    # print(program_name)
     print(PROGRAM_NAME)
     print("-" * 140)
     print("Welcome to the Enigma Machine Simulator v1")
@@ -70,12 +67,15 @@ def put_machine_to_work():
         coded_char = encrypt_char(list_text, plugboard_config, rotors, offsets, i)
         coded_text = coded_text + coded_char
     # Encryption process completed. Both the plaintext and the encoded text are going to be displayed on screen.
+
     print_key(key)
     print("Plaintext:", input_text)
     print("")
+
     # Adding spaces every 4 characters to resemble an actual message from the times of WWII.
     print("Encrypted text:", add_spaces(coded_text, 4))
     print("")
+
     # Favourites time!
     add_favourite_key(key)
     add_favourite_text(input_text)
@@ -184,7 +184,6 @@ def turn_rotor(rot_pos_indexes_list, double_step_notch):
         if m_pos_index == double_step_notch[1]:
             s_pos_index = (s_pos_index + 1) % ALPHABET_LENGTH
     rot_pos_indexes_list = [f_pos_index, m_pos_index, s_pos_index]
-    # print(ENGLISH_ALPHABET[rot_pos_indexes_list[0]], ENGLISH_ALPHABET[rot_pos_indexes_list[1]], ENGLISH_ALPHABET[rot_pos_indexes_list[2]])
     return rot_pos_indexes_list
 
 
